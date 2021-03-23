@@ -3,30 +3,66 @@
 <?php
 function head()
 {
-   echo '<br>CSC155201F';
    echo '<br>Alejandro Herrera';
-   echo '<br><img src="library/Goldeneagle.jpg" height="190" width="280">';
+   echo '<br>CSC155201F';
+   echo '<br><img src="library/Goldeneagle.jpg" height="150" width="200">';
 }
 ?>
 
 <?php
 function footer()
 {
-   echo '<br><a href="http://www.csit.parkland.edu/~aherrera13/csc155/12labs/dogpage.php">Dog Page</a>';
-   echo ' | ';
-   echo '<a href="http://www.csit.parkland.edu/~aherrera13/csc155/12labs/catpage.php">Cat Page</a>';
-   echo ' | ';
-   echo '<a href="http://www.csit.parkland.edu/~aherrera13/csc155/12labs/birdpage.php">Bird Page</a>';
-   echo ' | ';
-   echo '<a href="http://www.csit.parkland.edu/~aherrera13/csc155/12labs/snakepage.php">Snake Page</a>';
-   echo ' | ';
-   echo '<a href="http://www.csit.parkland.edu/~aherrera13/csc155/12labs/loginpage.php">Login Page</a>';
-   echo ' | ';
-   echo '<a href="http://www.csit.parkland.edu/~aherrera13/csc155/12labs/welcomepage.php">Welcome Page</a>';
-   echo ' | ';
-   echo '<a href="http://www.csit.parkland.edu/~aherrera13/csc155/12labs/logoutpage.php">Logout Page</a>';
-   echo ' | ';
-   echo '<a href="http://www.csit.parkland.edu/~aherrera13/csc155/12labs/shoppingcartpage.php">Shopping Cart</a>';
-
+echo'<ul>';
+  echo'<li><a href="loginpage.php">Login</a></li>';
+  echo'<li><a href="welcomepage.php">Welcome Page</a></li>';
+  echo'<li><a href="Dog.php">Dog Page</a></li>';
+  echo'<li><a href="Cat.php">Cat Page</a></li>';
+  echo'<li><a href="Bird.php">Bird Page</a></li>';
+  echo'<li><a href="Snake.php">Snake Page</a></li>';
+  echo'<li><a href="shoppingcartpage.php">Shopping Cart</a></li>';
+  echo'<li><a href="logoutpage.php">Logout</a></li>';
+echo'</ul>';
 }
 ?>
+
+<?php
+function animal_pic($pic, $times)
+{
+  for($i=0;$i<$times;$i++)
+  {
+   echo $pic;
+  }
+}
+
+?>
+
+<?php
+function bounce_back()
+{
+session_start();
+  if (!isset($_SESSION["username"]))
+  {
+   header("Location: loginpage.php");
+  }  
+}
+?>
+
+
+<?php
+function amount_buttons($animals)
+{
+if (!isset($_SESSION["$animals"]))
+   $_SESSION["$animals"]=0;
+if (isset($_POST["submit"]))
+{
+ if ($_POST["submit"] == "Add One")
+   $_SESSION["$animals"]++;
+ if ($_POST["submit"] == "Remove One")
+   $_SESSION["$animals"]--;
+ if ($_POST["submit"] == "Clear All")
+   $_SESSION["$animals"]=0;
+
+}
+}
+?>
+
