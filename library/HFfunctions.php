@@ -3,16 +3,29 @@
 <?php
 function head()
 {
-   echo '<br>Alejandro Herrera';
+   echo 'Alejandro Herrera';
    echo '<br>CSC155201F';
-   echo '<br><img src="library/Goldeneagle.jpg" height="150" width="200">';
+   echo '<br><img src="images/Ocean.jpg" height="50" width="100">';
+   echo '<br><img src="Goldeneagle.jpg" height="150" width="200">';
+
+if(isset($_COOKIE['user']))
+{
+     echo '<br>You are logged in as: <b>'. $_COOKIE['user'] .'</b> ';
+}
+else
+{
+     echo '';
+}
 }
 ?>
+
+
 
 <?php
 function footer()
 {
 echo'<ul>';
+  echo '<img src="images/Ocean2.jpg" height="100" width="150">';
   echo'<li><a href="loginpage.php">Login</a></li>';
   echo'<li><a href="welcomepage.php">Welcome Page</a></li>';
   echo'<li><a href="Dog.php">Dog Page</a></li>';

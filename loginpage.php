@@ -6,6 +6,8 @@
 <?php
 require("library/HFfunctions.php");
 session_start();
+unset($_COOKIE["user"]);
+head();
 function Post($name)
 {
   if (isset($_POST[$name]))
@@ -26,14 +28,13 @@ function Post($name)
         }
         else
         {
-        echo 'Incorrect, try "Alex" and "1010"';
+        echo '<br><b>Incorrect, try "Alex" and "1010"</b>';
         }
      }  
 }
 
 ?>
 </head>
-<?php head() ?>
 <body>
 <form method='POST'>
 Username: <input type='text' name='username1' value='<?php echo Post("username1");?>'> 

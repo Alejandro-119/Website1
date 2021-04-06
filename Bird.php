@@ -17,7 +17,7 @@ bounce_back();
 <input type='submit' name='submit' value='Clear All'>
 </form>
 <?php amount_buttons('bird')?>
-<p><?php echo animal_pic('<img src="library\Bird.jpg"height="50" width="50">', $_SESSION['bird']);?></p>
+<p><?php echo animal_pic('<img src="Animal_pics/Bird.jpg"height="50" width="50">', $_SESSION['bird']);?></p>
 <p> You are buying <?php echo $_SESSION['bird'];?> birds.</p>
 <?php footer() ?>
 </body>

@@ -6,7 +6,6 @@
 <?php
 require("library/HFfunctions.php");
 session_start();
-
 unset($_SESSION["username"]);
 header("refresh:5;url=loginpage.php");
 ?>
