@@ -6,6 +6,7 @@
 <?php
 require("library/HFfunctions.php");
 session_start();
+$conn = getConn();
 unset($_COOKIE["user"]);
 head();
 function Post($name)
@@ -21,8 +22,9 @@ function Post($name)
 {
      if ($_POST['submit'] == 'Enter')
      {
-        if ($_POST['username1'] == 'Alex' and $_POST['password1'] == '1010')
-        {
+         $row = lookupUsername($conn, Post('username1'));
+         if ($row != 0 && password_verify($_POST['password1'], $row['encrypted_password']))   
+     {
             $_SESSION["username"] = $_POST["username1"];
             header("Location: welcomepage.php");
         }
@@ -41,6 +43,7 @@ Username: <input type='text' name='username1' value='<?php echo Post("username1"
 Password: <input type='password' name='password1' value='<?php echo Post("password1");?>'>
 <input type='submit' name='submit' value='Enter'>
 </form>
+<p><a href='insertUser.php'>Create a new account</a></p>
 <?php footer() ?>
 </form>
 </body>

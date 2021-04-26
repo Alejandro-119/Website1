@@ -78,4 +78,33 @@ if (isset($_POST["submit"]))
 }
 }
 ?>
+<?php 
 
+function getConn()
+{
+    $user = "aherrera13";
+    $conn = mysqli_connect("localhost",$user,$user,$user);
+    if (mysqli_connect_errno()) {
+        echo "<b>Failed to connect to MySQL: " . mysqli_connect_error() ."</b>";
+ }
+    return $conn;
+}
+
+function lookupUsername($conn, $username) {
+    $stmt = $conn->prepare("SELECT * FROM users WHERE username=?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $num_rows = mysqli_num_rows($result);
+    if ($num_rows == 0) {
+        return 0;
+    }
+    else if ($num_rows > 1) {
+        header("Location: goodbye.php");
+    }
+    else {
+        return $result->fetch_assoc();
+   }
+
+}
+?>
