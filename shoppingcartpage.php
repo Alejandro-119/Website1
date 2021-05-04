@@ -6,6 +6,18 @@
 <?php
 require("library/HFfunctions.php");
 bounce_back();
+$conn = getConn();
+function insertNewRecord($conn)
+{
+    $stmt = $conn->prepare("INSERT INTO orders (user, orders) VALUES (?, ?)");
+    $stmt->bind_param("ss", $user, $orders);
+    
+    $user = $_SESSION['username'];
+    $orders = $_SESSION['dog'].' Dogs, '.$_SESSION['cat'].' Cats, '.$_SESSION['bird'].' Birds, and '.$_SESSION['snake'].' Snakes';
+    $stmt->execute(); 
+}
+        insertNewRecord($conn);
+
 ?>
 </head>
 <body>

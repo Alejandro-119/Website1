@@ -6,6 +6,7 @@
 <?php
 require("library/HFfunctions.php");
 bounce_back();
+$conn = getConn();
 ?>
 </head>
 <body>

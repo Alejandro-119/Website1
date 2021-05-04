@@ -5,7 +5,7 @@ function head()
 {
    echo 'Alejandro Herrera';
    echo '<br>CSC155201F';
-   echo '<br><img src="images/Ocean.jpg" height="50" width="100">';
+   echo '<br><img src="images/Ocean.jpg" height="80" width="200">';
    echo '<br><img src="Goldeneagle.jpg" height="150" width="200">';
 
 if(isset($_COOKIE['user']))
@@ -24,8 +24,8 @@ else
 <?php
 function footer()
 {
+  echo '<img src="images/Ocean2.jpg" height="80" width="200">';
 echo'<ul>';
-  echo '<img src="images/Ocean2.jpg" height="100" width="150">';
   echo'<li><a href="loginpage.php">Login</a></li>';
   echo'<li><a href="welcomepage.php">Welcome Page</a></li>';
   echo'<li><a href="Dog.php">Dog Page</a></li>';
@@ -35,6 +35,16 @@ echo'<ul>';
   echo'<li><a href="shoppingcartpage.php">Shopping Cart</a></li>';
   echo'<li><a href="logoutpage.php">Logout</a></li>';
 echo'</ul>';
+
+if ($_SESSION['group'] == 'admin')
+  {
+  echo'<ul>';
+  echo'<li><a href="showUsers.php">Show Users</a></li>';
+  echo'<li><a href="showOrders.php">Show Orders</a></li>';
+  echo'</ul>'; 
+  }
+
+
 }
 ?>
 
@@ -50,13 +60,18 @@ function animal_pic($pic, $times)
 ?>
 
 <?php
-function bounce_back()
+function bounce_back($group='user')
 {
 session_start();
   if (!isset($_SESSION["username"]))
   {
    header("Location: loginpage.php");
   }  
+
+if ( $group != 'user' && $_SESSION['group'] != $group )
+ {
+   header("Location: welcomepage.php");
+ }
 }
 ?>
 

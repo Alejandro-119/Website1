@@ -25,12 +25,13 @@ function Post($name)
          $row = lookupUsername($conn, Post('username1'));
          if ($row != 0 && password_verify($_POST['password1'], $row['encrypted_password']))   
      {
-            $_SESSION["username"] = $_POST["username1"];
+            $_SESSION["username"] = Post("username1");
+            $_SESSION['group'] = $row['usergroup'];
             header("Location: welcomepage.php");
         }
         else
         {
-        echo '<br><b>Incorrect, try "Alex" and "1010"</b>';
+        echo '<br><b>Incorrect, try "Alex" and "1234" or create a new account.</b>';
         }
      }  
 }
@@ -44,7 +45,6 @@ Password: <input type='password' name='password1' value='<?php echo Post("passwo
 <input type='submit' name='submit' value='Enter'>
 </form>
 <p><a href='insertUser.php'>Create a new account</a></p>
-<?php footer() ?>
 </form>
 </body>
 </html>
